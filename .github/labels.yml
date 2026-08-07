@@ -1,0 +1,41 @@
+# 이슈 라벨 정의
+# github-label-sync 등으로 동기화 가능: npx github-label-sync --access-token <TOKEN> --labels .github/labels.yml <owner>/<repo>
+
+# 유형
+- name: "버그"
+  color: "d73a4a"
+  description: "예상과 다르게 동작하는 문제"
+- name: "기능제안"
+  color: "a2eeef"
+  description: "새로운 기능이나 개선 제안"
+- name: "디자인"
+  color: "d4c5f9"
+  description: "레이아웃, 스타일 등 UI/UX 관련"
+- name: "콘텐츠"
+  color: "fef2c0"
+  description: "텍스트, 이미지 등 웹사이트 콘텐츠 수정"
+- name: "문서"
+  color: "0075ca"
+  description: "README, 가이드 등 문서 작업"
+- name: "기타작업"
+  color: "cfd3d7"
+  description: "빌드, 배포, 설정 등 잡무성 작업"
+
+# 우선순위
+- name: "긴급"
+  color: "e11d21"
+  description: "빠른 처리가 필요한 이슈"
+
+# 진행 상태
+- name: "작업전"
+  color: "ededed"
+  description: "아직 착수하지 않음"
+- name: "진행중"
+  color: "fbca04"
+  description: "현재 작업 진행 중"
+- name: "완료"
+  color: "0e8a16"
+  description: "작업 완료"
+- name: "보류"
+  color: "c5def5"
+  description: "논의 필요 또는 일시 보류"
