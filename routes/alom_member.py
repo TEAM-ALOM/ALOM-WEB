@@ -1,7 +1,15 @@
+from fastapi import Request
 from fastapi.routing import APIRouter
+from fastapi.templating import Jinja2Templates
 
-router = APIRouter(prefix="/alom/member", tags=["Alom Member Page"])
+router = APIRouter(prefix="/member", tags=["Alom Member Page"])
+
+templates = Jinja2Templates(directory="templates")
 
 @router.get("/")
-async def members_page():
-    return {"message": "this is Alom member page"}
+async def member_page(request: Request):
+    return templates.TemplateResponse(
+            request=request,
+            name="alom_member.html",
+            context={}
+        )
