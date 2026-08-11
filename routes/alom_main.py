@@ -2,7 +2,7 @@ from fastapi import Request
 from fastapi.routing import APIRouter
 from fastapi.templating import Jinja2Templates
 
-router = APIRouter(prefix="/alom", tags=["Alom Main Page"])
+router = APIRouter(prefix="/", tags=["Alom Main Page"])
 
 templates = Jinja2Templates(directory="templates")
 
