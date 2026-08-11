@@ -1,108 +1,333 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALOM</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALOM | 함께 성장하는 개발 동아리</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <!-- ============ GNB ============ -->
+    <header class="gnb" id="gnb">
+      <div class="gnb__inner">
+        <a href="#top" class="gnb__logo">ALOM</a>
+        <nav class="gnb__nav">
+          <a href="#curriculum">커리큘럼</a>
+          <a href="#activities">아카이브</a>
+          <a href="#">자주 묻는 질문</a>
+        </nav>
+      </div>
+    </header>
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
-    color: #1a1a2e;
-    line-height: 1.6;
-  }
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">SOFTWARE DEVELOPMENT CLUB</p>
+        <h1 class="hero__title">
+          <span>함께 성장하는</span>
+          <span>개발 동아리,</span>
+          <span class="hero__title--accent">아롬</span>
+        </h1>
+        <p class="hero__desc">코드로 배우고, 사람으로 성장합니다.</p>
+        <a href="#curriculum" class="hero__scroll">
+          <span>SCROLL</span>
+          <span class="hero__scroll-line"></span>
+        </a>
+      </div>
+    </section>
 
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #eee;
-    position: sticky;
-    top: 0;
-    background: #fff;
-  }
+    <!-- ============ CURRICULUM ============ -->
+    <section class="curriculum" id="curriculum">
+      <div class="section__head reveal reveal--up">
+        <p class="section__eyebrow">CURRICULUM</p>
+        <h2 class="section__title">2026학년도 2학기 커리큘럼</h2>
+      </div>
 
-  .logo {
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: #4338ca;
-  }
+      <div class="curriculum__grid">
+        <div class="curri-card curri-card--junior reveal reveal--left">
+          <div class="curri-card__head">
+            <span class="curri-card__badge">JUNIOR</span>
+            <h3>주니어반</h3>
+            <p>개발의 첫걸음을 함께 시작해요</p>
+          </div>
+          <ul class="curri-card__list">
+            <li><span class="curri-card__num">01</span>C언어 기초</li>
+            <li><span class="curri-card__num">02</span>고급 C언어</li>
+            <li><span class="curri-card__num">03</span>파이썬 기초 코딩</li>
+            <li><span class="curri-card__num">04</span>알고리즘</li>
+          </ul>
+        </div>
 
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
+        <div class="curri-card curri-card--senior reveal reveal--right">
+          <div class="curri-card__head">
+            <span class="curri-card__badge">SENIOR</span>
+            <h3>시니어반</h3>
+            <p>실전 기술과 팀 프로젝트로 완성해요</p>
+          </div>
+          <ul class="curri-card__list">
+            <li><span class="curri-card__num">01</span>Java</li>
+            <li><span class="curri-card__num">02</span>Spring</li>
+            <li>
+              <span class="curri-card__num">03</span>프론트 기초 (HTML, CSS, JS)
+            </li>
+            <li><span class="curri-card__num">04</span>React</li>
+            <li><span class="curri-card__num">05</span>AI - ML</li>
+            <li><span class="curri-card__num">06</span>AI - DL</li>
+            <li><span class="curri-card__num">07</span>팀 프로젝트반</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  .nav-links a {
-    text-decoration: none;
-    color: #1a1a2e;
-    font-weight: 500;
-  }
+    <!-- ============ ACTIVITIES ============ -->
+    <section class="activities" id="activities">
+      <div class="section__head reveal reveal--up">
+        <p class="section__eyebrow">ACTIVITIES</p>
+        <h2 class="section__title">아롬의 활동</h2>
+      </div>
 
-  .nav-links a:hover,
-  .nav-links a:focus-visible {
-    color: #4338ca;
-  }
+      <div class="activities__scroll">
+        <!-- 좌측: 세로로 길게 나열되는 텍스트 리스트. js/index.js가 IntersectionObserver로
+             화면 중앙에 온 항목을 감지해 .active 클래스를 토글한다 -->
+        <div class="activities__text-col">
+          <div class="activity-item active" data-index="0">
+            <span class="activity-item__icon">🤝</span>
+            <h3 class="activity-item__title">짝선짝후</h3>
+            <p class="activity-item__desc">
+              선배와 후배가 짝을 이루어 학기 내내 소통합니다. 전공 공부부터 진로
+              고민까지, 편하게 물어보고 함께 답을 찾아가는 시간이에요.
+            </p>
+          </div>
+          <div class="activity-item" data-index="1">
+            <span class="activity-item__icon">🧭</span>
+            <h3 class="activity-item__title">멘토멘티</h3>
+            <p class="activity-item__desc">
+              실력 있는 선배가 1:1로 밀착 코칭합니다. 막막했던 개념도 눈높이에
+              맞는 설명과 피드백으로 확실하게 내 것으로 만들 수 있어요.
+            </p>
+          </div>
+          <div class="activity-item" data-index="2">
+            <span class="activity-item__icon">📚</span>
+            <h3 class="activity-item__title">스터디</h3>
+            <p class="activity-item__desc">
+              같은 목표를 가진 부원들이 모여 자율적으로 학습합니다. 혼자라면
+              미뤘을 공부도 함께라면 끝까지 해낼 수 있어요.
+            </p>
+          </div>
+          <div class="activity-item" data-index="3">
+            <span class="activity-item__icon">🎤</span>
+            <h3 class="activity-item__title">세미나</h3>
+            <p class="activity-item__desc">
+              최신 기술 트렌드와 실전 경험을 발표로 공유합니다. 발표자는
+              설명하는 힘을, 청중은 새로운 인사이트를 얻어갑니다.
+            </p>
+          </div>
+          <div class="activity-item" data-index="4">
+            <span class="activity-item__icon">🏆</span>
+            <h3 class="activity-item__title">대회활동</h3>
+            <p class="activity-item__desc">
+              해커톤과 공모전에 팀으로 도전합니다. 아이디어를 실제 서비스로
+              만들어보는 짧고 굵은 몰입의 시간이에요.
+            </p>
+          </div>
+        </div>
 
-  main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
-    text-align: center;
-  }
+        <!-- 우측: position: sticky로 뷰포트에 고정되는 이미지 영역.
+             실제 사진 준비 전까지는 활동별 색상/아이콘 플레이스홀더로 대체 -->
+        <div class="activities__image-col">
+          <div class="activities__image-frame">
+            <div class="activity-image active" data-index="0">
+              <span class="activity-image__icon">🤝</span>
+              <span class="activity-image__label">짝선짝후</span>
+            </div>
+            <div class="activity-image" data-index="1">
+              <span class="activity-image__icon">🧭</span>
+              <span class="activity-image__label">멘토멘티</span>
+            </div>
+            <div class="activity-image" data-index="2">
+              <span class="activity-image__icon">📚</span>
+              <span class="activity-image__label">스터디</span>
+            </div>
+            <div class="activity-image" data-index="3">
+              <span class="activity-image__icon">🎤</span>
+              <span class="activity-image__label">세미나</span>
+            </div>
+            <div class="activity-image" data-index="4">
+              <span class="activity-image__icon">🏆</span>
+              <span class="activity-image__label">대회활동</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+    <!-- ============ REVIEWS ============ -->
+    <section class="reviews" id="reviews">
+      <div class="section__head reveal reveal--up">
+        <p class="section__eyebrow">REVIEWS</p>
+        <h2 class="section__title">아롬 부원들의 이야기</h2>
+      </div>
 
-  p.subtitle {
-    color: #555;
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-  }
+      <!-- overflow: hidden 래퍼 안에서 .reviews__track이 CSS keyframes로 끊임없이 흐름 -->
+      <div class="reviews__marquee">
+        <div class="reviews__track">
+          <!-- 원본 세트 -->
+          <article class="review-card" style="--tilt: -4deg">
+            <p class="review-card__quote">
+              “전공 수업에서 이해 못했던 개념을 아롬 스터디에서 확실히 잡고 갈
+              수 있었어요.”
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 A</span>
+              <span class="review-card__meta">주니어반 · 25학번</span>
+            </div>
+          </article>
+          <article class="review-card" style="--tilt: 3deg">
+            <p class="review-card__quote">
+              “멘토멘티 덕분에 처음 써본 React로 팀 프로젝트를 무사히
+              마쳤습니다.”
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 B</span>
+              <span class="review-card__meta">시니어반 · 24학번</span>
+            </div>
+          </article>
+          <article class="review-card" style="--tilt: -2deg">
+            <p class="review-card__quote">
+              “짝선짝후 활동에서 만난 선배 덕분에 진로 고민을 많이 해결했어요.”
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 C</span>
+              <span class="review-card__meta">주니어반 · 25학번</span>
+            </div>
+          </article>
+          <article class="review-card" style="--tilt: 5deg">
+            <p class="review-card__quote">
+              “해커톤에 나가서 처음으로 수상까지 해봤습니다. 아롬 아니었으면
+              못했을 도전이에요.”
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 D</span>
+              <span class="review-card__meta">시니어반 · 23학번</span>
+            </div>
+          </article>
+          <article class="review-card" style="--tilt: -3deg">
+            <p class="review-card__quote">
+              "세미나에서 발표하면서 제가 아는 걸 설명하는 힘이 늘었어요."
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 E</span>
+              <span class="review-card__meta">시니어반 · 24학번</span>
+            </div>
+          </article>
 
-  .btn {
-    display: inline-block;
-    background: #4338ca;
-    color: #fff;
-    padding: 0.75rem 1.75rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-  }
+          <!-- 복제 세트: -50% 이동 시 이음새 없이 반복되도록 동일한 카드를 한 번 더 배치 (aria-hidden 처리) -->
+          <article class="review-card" style="--tilt: -4deg" aria-hidden="true">
+            <p class="review-card__quote">
+              “전공 수업에서 이해 못했던 개념을 아롬 스터디에서 확실히 잡고 갈
+              수 있었어요.”
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 A</span>
+              <span class="review-card__meta">주니어반 · 25학번</span>
+            </div>
+          </article>
+          <article class="review-card" style="--tilt: 3deg" aria-hidden="true">
+            <p class="review-card__quote">
+              “멘토멘티 덕분에 처음 써본 React로 팀 프로젝트를 무사히
+              마쳤습니다.”
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 B</span>
+              <span class="review-card__meta">시니어반 · 24학번</span>
+            </div>
+          </article>
+          <article class="review-card" style="--tilt: -2deg" aria-hidden="true">
+            <p class="review-card__quote">
+              “짝선짝후 활동에서 만난 선배 덕분에 진로 고민을 많이 해결했어요.”
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 C</span>
+              <span class="review-card__meta">주니어반 · 25학번</span>
+            </div>
+          </article>
+          <article class="review-card" style="--tilt: 5deg" aria-hidden="true">
+            <p class="review-card__quote">
+              “해커톤에 나가서 처음으로 수상까지 해봤습니다. 아롬 아니었으면
+              못했을 도전이에요.”
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 D</span>
+              <span class="review-card__meta">시니어반 · 23학번</span>
+            </div>
+          </article>
+          <article class="review-card" style="--tilt: -3deg" aria-hidden="true">
+            <p class="review-card__quote">
+              "세미나에서 발표하면서 제가 아는 걸 설명하는 힘이 늘었어요."
+            </p>
+            <div class="review-card__author">
+              <span class="review-card__name">회원 E</span>
+              <span class="review-card__meta">시니어반 · 24학번</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  .btn:hover,
-  .btn:focus-visible {
-    background: #3730a3;
-  }
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="footer__logo">ALOM</span>
+          <p>함께 성장하는 소프트웨어 개발 동아리</p>
+        </div>
 
-  @media (max-width: 600px) {
-    nav { flex-direction: column; gap: 1rem; }
-    .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    h1 { font-size: 1.75rem; }
-  }
-</style>
-</head>
-<body>
-  <nav>
-    <div class="logo">ALOM</div>
-    <ul class="nav-links">
-      <li><a href="/alom">홈</a></li>
-      <li><a href="/alom/curriculum">커리큘럼</a></li>
-      <li><a href="/alom/question">자주 묻는 질문</a></li>
-      <li><a href="/alom/archive">아카이브</a></li>
-      <li><a href="/alom/member">아롬인들</a></li>
-    </ul>
-  </nav>
+        <div class="footer__contact">
+          <p>문의 : alom.club@university.ac.kr</p>
+          <p>동아리방 : 학생회관 3층 305호</p>
+        </div>
 
-  <main id="home">
-    <h1>ALOM에 오신 걸 환영해요</h1>
-    <p class="subtitle">테스트용 페이지</p>
-    <a href="#about" class="btn">더 알아보기</a>
-  </main>
-</body>
+        <div class="footer__sns">
+          <a href="#" aria-label="Instagram" class="footer__icon">
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" />
+            </svg>
+          </a>
+          <a href="#" aria-label="GitHub" class="footer__icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path
+                d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2.1.1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.6 7.9-5.9 7.9-11C23.5 5.6 18.4.5 12 .5z"
+              />
+            </svg>
+          </a>
+          <a href="#" aria-label="Email" class="footer__icon">
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+            >
+              <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
+              <path d="M3.5 6l8.5 7 8.5-7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <p class="footer__copyright">Copyright © ALOM. All rights reserved.</p>
+    </footer>
+
+    <script src="/static/js/index.js" defer></script>
+  </body>
 </html>
