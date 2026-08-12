@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ALOM | 함께 성장하는 개발 동아리</title>
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <!-- ============ GNB ============ -->
@@ -14,6 +14,7 @@
         <nav class="gnb__nav">
           <a href="#curriculum">커리큘럼</a>
           <a href="#activities">아카이브</a>
+          <a href="#">아롬인들</a>
           <a href="#">자주 묻는 질문</a>
         </nav>
       </div>
@@ -22,14 +23,29 @@
     <!-- ============ HERO ============ -->
     <section class="hero" id="top">
       <div class="hero__bg" aria-hidden="true"></div>
-      <div class="hero__content">
-        <p class="hero__eyebrow">SOFTWARE DEVELOPMENT CLUB</p>
-        <h1 class="hero__title">
-          <span>함께 성장하는</span>
-          <span>개발 동아리,</span>
-          <span class="hero__title--accent">아롬</span>
+
+      <!-- js/index.js의 initHeroIntro()가 로드 1.6초 뒤 또는 첫 스크롤/휠 시점에
+           #heroIntro에 .is-expanded를 붙인다. "Alpha"의 앞 두 글자(AL)와
+           "Omega"의 앞 두 글자(OM)가 곧 ALOM이라서, 그 두 글자만 크게 남긴 채
+           나머지 철자가 펼쳐지며 "ALpha to OMega"가 완성된다. 전개가 끝나면
+           .is-detail-visible을 붙여 태그라인을 페이드인한다 -->
+      <div class="hero-intro" id="heroIntro">
+        <h1 class="hero-intro__stage">
+          <span class="hero-intro__word"
+            ><span class="hero-intro__char">AL</span
+            ><span class="hero-intro__rest">pha</span></span
+          >
+          <span class="hero-intro__connector">to</span>
+          <span class="hero-intro__word"
+            ><span class="hero-intro__char">OM</span
+            ><span class="hero-intro__rest">ega</span></span
+          >
         </h1>
-        <p class="hero__desc">코드로 배우고, 사람으로 성장합니다.</p>
+
+        <div class="hero-intro__detail">
+          <p>다 함께 성장하는 개발 동아리</p>
+        </div>
+
         <a href="#curriculum" class="hero__scroll">
           <span>SCROLL</span>
           <span class="hero__scroll-line"></span>
@@ -93,17 +109,18 @@
         <div class="activities__text-col">
           <div class="activity-item active" data-index="0">
             <span class="activity-item__icon">🤝</span>
-            <h3 class="activity-item__title">짝선짝후</h3>
+            <h3 class="activity-item__title">아롬다롬</h3>
             <p class="activity-item__desc">
-              선배와 후배가 짝을 이루어 학기 내내 소통합니다. 전공 공부부터 진로
-              고민까지, 편하게 물어보고 함께 답을 찾아가는 시간이에요.
+              후배(아롬)와 선배(다롬)가 짝을 이루어 학기 내내 소통합니다. 전공
+              공부부터 진로 고민까지, 편하게 물어보고 함께 답을 찾아가는
+              시간이에요.
             </p>
           </div>
           <div class="activity-item" data-index="1">
             <span class="activity-item__icon">🧭</span>
             <h3 class="activity-item__title">멘토멘티</h3>
             <p class="activity-item__desc">
-              실력 있는 선배가 1:1로 밀착 코칭합니다. 막막했던 개념도 눈높이에
+              실력 있는 멘토가 멘티들을 코칭합니다. 막막했던 개념도 눈높이에
               맞는 설명과 피드백으로 확실하게 내 것으로 만들 수 있어요.
             </p>
           </div>
@@ -125,7 +142,7 @@
           </div>
           <div class="activity-item" data-index="4">
             <span class="activity-item__icon">🏆</span>
-            <h3 class="activity-item__title">대회활동</h3>
+            <h3 class="activity-item__title">대외활동</h3>
             <p class="activity-item__desc">
               해커톤과 공모전에 팀으로 도전합니다. 아이디어를 실제 서비스로
               만들어보는 짧고 굵은 몰입의 시간이에요.
@@ -139,7 +156,7 @@
           <div class="activities__image-frame">
             <div class="activity-image active" data-index="0">
               <span class="activity-image__icon">🤝</span>
-              <span class="activity-image__label">짝선짝후</span>
+              <span class="activity-image__label">아롬다롬</span>
             </div>
             <div class="activity-image" data-index="1">
               <span class="activity-image__icon">🧭</span>
@@ -155,7 +172,7 @@
             </div>
             <div class="activity-image" data-index="4">
               <span class="activity-image__icon">🏆</span>
-              <span class="activity-image__label">대회활동</span>
+              <span class="activity-image__label">대외활동</span>
             </div>
           </div>
         </div>
@@ -276,7 +293,6 @@
     </section>
 
     <!-- ============ FOOTER ============ -->
-     <!-- 주석 -->
     <footer class="footer">
       <div class="footer__inner">
         <div class="footer__brand">
@@ -286,7 +302,7 @@
 
         <div class="footer__contact">
           <p>문의 : alom.club@university.ac.kr</p>
-          <p>동아리방 : 학생회관 3층 305호</p>
+          <p>동아리방 : 학생회관 6층 622호</p>
         </div>
 
         <div class="footer__sns">
@@ -329,6 +345,6 @@
       <p class="footer__copyright">Copyright © ALOM. All rights reserved.</p>
     </footer>
 
-    <script src="/static/js/index.js" defer></script>
+    <script src="js/index.js" defer></script>
   </body>
 </html>
