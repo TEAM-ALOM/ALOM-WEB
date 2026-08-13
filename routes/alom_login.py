@@ -1,6 +1,6 @@
 from fastapi import Request, Form
 from fastapi.responses import RedirectResponse
-from fastapi.routing import APIRoute
+from fastapi.routing import APIRouter
 from fastapi.templating import Jinja2Templates
 from fastapi.exceptions import HTTPException
 
@@ -9,7 +9,7 @@ from pydantic import EmailStr
 
 from services.login_svc import get_manager_info
 
-router = APIRoute("/login", tags=["Alom Login Page"])
+router = APIRouter(prefix="/login", tags=["Alom Login Page"])
 
 templates = Jinja2Templates(directory="templates")
 
@@ -47,7 +47,7 @@ def register_ui(request: Request,
                             detail="등록하신 패스워드 정보가 입력 정보와 다릅니다.")
 
     # session에 저장
-    request.state.session["manager_info"] = {
+    request.session["manager_info"] = {
         "id": manager_info.id, 
         "email": manager_info.email
         }
