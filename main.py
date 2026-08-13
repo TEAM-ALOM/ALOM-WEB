@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from routes import alom_main, alom_question, alom_archive, alom_member
+from routes import (alom_main, 
+                    alom_question, 
+                    alom_archive, 
+                    alom_member, 
+                    alom_login)
 
 app = FastAPI()
 
@@ -15,3 +19,5 @@ app.include_router(alom_question.router)
 app.include_router(alom_archive.router)
 # 아롬 멤버 페이지
 app.include_router(alom_member.router)
+# 아롬 로그인 페이지
+app.include_router(alom_login.router)
