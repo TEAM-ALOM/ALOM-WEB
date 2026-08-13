@@ -1,145 +1,55 @@
-from typing import Annotated
-from fastapi import Request
-from fastapi.routing import APIRouter
+from fastapi import Request, Form
+from fastapi.responses import RedirectResponse
+from fastapi.routing import APIRoute
 from fastapi.templating import Jinja2Templates
+from fastapi.exceptions import HTTPException
 
-from fastapi import Depends, FastAPI, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from pydantic import BaseModel
+from passlib.context import CryptContext
+from pydantic import EmailStr
 
-from datetime import datetime, timedelta, timezone
-import jwt
-from pwdlib import PasswordHash
-from jwt.exceptions import InvalidTokenError
+from services.login_svc import get_manager_info
 
-SECRET_KEY = "8179ef104c4b59a83467be1b7743d6a071e13946a5cc8be8809ad8618335812a"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+router = APIRoute("/login", tags=["Alom Login Page"])
 
+templates = Jinja2Templates(directory="templates")
 
-fake_users_db = {
-    "johndoe": {
-        "username": "johndoe",
-        "full_name": "John Doe",
-        "email": "johndoe@example.com",
-        "hashed_password": "$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc",
-        "disabled": False,
-    }
-}
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-class Token(BaseModel):
-    access_token: str
-    token_type: str
+def get_hashed_password(password: str):
+    return pwd_context.hash(password)
 
+def verify_password(plain_password: str, hashed_password: str):
+    return pwd_context.verify(plain_password, hashed_password)
 
-class TokenData(BaseModel):
-    username: str | None = None
-
-
-class User(BaseModel):
-    username: str
-    email: str | None = None
-    full_name: str | None = None
-    disabled: bool | None = None
-
-
-class UserInDB(User):
-    hashed_password: str
-
-router = APIRouter(prefix="/login", tags=["Alom Login Page"])
-
-password_hasher = PasswordHash.recommended()
-
-DUMMY_HASH = password_hasher.hash("dummypassword")
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login/token")
-
-def verify_password(plain_password, hashed_password):
-    return password_hasher.verify(plain_password, hashed_password)
-
-def get_password_hash(plain_password):
-    return password_hasher.hash(plain_password)
-
-def get_user(db, username: str):
-    if username in db:
-        user_dict = db[username]
-        return UserInDB(**user_dict)
-
-def authenticate_user(fake_db, username: str, password: str):
-    user = get_user(fake_db, username)
-    if not user:
-        verify_password(password, DUMMY_HASH)
-        return False
-    if not verify_password(password, user.hashed_password):
-        return False
-    return user
-
-def create_access_token(data: dict, expires_delta: timedelta | None = None):
-    to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.now(timezone.utc) + expires_delta
-    else:
-        expire = datetime.now(timezone.utc) + timedelta(minutes=15)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
-
-
-async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username = payload.get("sub")
-        if username is None:
-            raise credentials_exception
-        token_data = TokenData(username=username)
-    except InvalidTokenError:
-        raise credentials_exception
-    user = get_user(fake_users_db, username=token_data.username)
-    if user is None:
-        raise credentials_exception
-    return user
-
-
-async def get_current_active_user(
-    current_user: Annotated[User, Depends(get_current_user)],
-):
-    if current_user.disabled:
-        raise HTTPException(status_code=400, detail="Inactive user")
-    return current_user
-
-
-@router.post("/token")
-async def login_for_access_token(
-    form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
-) -> Token:
-    user = authenticate_user(fake_users_db, form_data.username, form_data.password)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
-    )
-    return Token(access_token=access_token, token_type="bearer")
-
-
+# 로그인 페이지    
 @router.get("/")
-async def read_users_me(
-    current_user: Annotated[User, Depends(get_current_active_user)],
-) -> User:
-    return current_user
+def login_ui(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="alom_login.html",
+        context={}
+    )
 
+@router.post("/")
+def register_ui(request: Request,
+                id: str = Form(min_length=5, max_length=30),
+                password: str = Form(min_length=5, max_length=30)):
+    # manager 정보 가져오기
+    manager_info = get_manager_info()
+    hashed_password = manager_info.password
 
-@router.get("/")
-async def read_own_items(
-    current_user: Annotated[User, Depends(get_current_active_user)],
-):
-    return [{"item_id": "Foo", "owner": current_user.username}]
+    # 비밀번호 검증
+    is_correct_pw = verify_password(plain_password=password,
+                                    hashed_password = hashed_password)
+
+    if not is_correct_pw:
+        raise HTTPException(status_code=401,
+                            detail="등록하신 패스워드 정보가 입력 정보와 다릅니다.")
+
+    # session에 저장
+    request.state.session["manager_info"] = {
+        "id": manager_info.id, 
+        "email": manager_info.email
+        }
+
+    return RedirectResponse("/", status_code=302)

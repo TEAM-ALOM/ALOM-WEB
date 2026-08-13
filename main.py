@@ -6,10 +6,21 @@ from routes import (alom_main,
                     alom_member, 
                     alom_login)
 
+from starlette.middleware.sessions import SessionMiddleware
+from dotenv import load_dotenv
+import os
+
+# Secret key
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
+
 app = FastAPI()
 
 # 정적 파일 서빙
 app.mount("/static", StaticFiles(directory="templates"), name="static")
+
+# session middleware 설정
+app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY, max_age=3600)
 
 # 아롬 메인 페이지
 app.include_router(alom_main.router)
