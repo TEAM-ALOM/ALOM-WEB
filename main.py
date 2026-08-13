@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.security import OAuth2PasswordBearer
 
@@ -8,6 +8,10 @@ from routes import alom_main, alom_question, alom_archive, alom_member
 app = FastAPI()
 
 oauth2_sheme = OAuth2PasswordBearer(tokenUrl="token")
+
+@app.get("/items/")
+async def read_items(token: Annotated[str, Depends(oauth2_sheme)]):
+    return {"token": token}
 
 # 정적 파일 서빙
 app.mount("/static", StaticFiles(directory="templates"), name="static")
