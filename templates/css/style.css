@@ -315,6 +315,12 @@ svg {
   max-width: 0;
   opacity: 0;
   overflow: hidden;
+  /* g/p 등 디센더가 overflow:hidden의 줄 높이 기준 클리핑 영역에 잘리지
+     않도록, padding-bottom으로 클리핑 영역만 아래로 넓히고 동일한 값만큼
+     margin-bottom을 음수로 상쇄해 레이아웃상 차지하는 높이/위치는 그대로
+     유지한다 */
+  padding-bottom: 0.3em;
+  margin-bottom: -0.3em;
   white-space: nowrap;
   font-size: 0.62em;
   font-weight: 750;
