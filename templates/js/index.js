@@ -149,17 +149,17 @@ function initActivitiesScroll() {
    5. 히어로 타이포그래피 인트로 (ALOM -> ALpha to OMega)
    - 로드 후 AUTO_DELAY가 지나거나 사용자가 첫 스크롤/휠을 하는 순간(둘 중
      먼저 오는 쪽) #heroIntro에 .is-expanded를 붙인다. 실제 펼침 애니메이션
-     (max-width/opacity/margin/font-size 전환)은 CSS가 전담한다.
+     (max-width/opacity/margin/transform 전환)은 CSS가 전담한다.
    - .is-expanded 전환이 끝날 즈음(DETAIL_DELAY) .is-detail-visible을 추가해
      태그라인과 스크롤 인디케이터를 페이드인시킨다. DETAIL_DELAY는 CSS의
-     가장 긴 전환 시간(font-size 1.9s)에 맞춰져 있다.
+     가장 긴 전환 시간(transform 2.6s)에 맞춰져 있다.
    ========================================================================== */
 function initHeroIntro() {
   const hero = document.getElementById("heroIntro");
   if (!hero) return;
 
   const AUTO_DELAY = 1600; // 로드 후 자동 트리거까지의 대기 시간(ms)
-  const DETAIL_DELAY = 1900; // .hero-intro__stage 폭/폰트 전환 시간에 맞춘 지연(ms)
+  const DETAIL_DELAY = 2600; // .hero-intro__stage 폭/폰트 전환 시간(2.6s)에 맞춘 지연(ms)
 
   let triggered = false;
 
