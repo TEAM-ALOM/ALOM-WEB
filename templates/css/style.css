@@ -133,6 +133,7 @@ svg {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .gnb__nav {
@@ -849,6 +850,7 @@ svg {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer__brand p {
