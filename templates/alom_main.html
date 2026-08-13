@@ -22,7 +22,9 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="top">
-      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__bg-clip" aria-hidden="true">
+        <div class="hero__bg"></div>
+      </div>
 
       <!-- js/index.js의 initHeroIntro()가 로드 1.6초 뒤 또는 첫 스크롤/휠 시점에
            #heroIntro에 .is-expanded를 붙인다. "Alpha"의 앞 두 글자(AL)와
@@ -45,11 +47,6 @@
         <div class="hero-intro__detail">
           <p>다 함께 성장하는 개발 동아리</p>
         </div>
-
-        <a href="#curriculum" class="hero__scroll">
-          <span>SCROLL</span>
-          <span class="hero__scroll-line"></span>
-        </a>
       </div>
     </section>
 
