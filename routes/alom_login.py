@@ -1,4 +1,4 @@
-from fastapi import Request, Form
+from fastapi import Request, Form, status
 from fastapi.responses import RedirectResponse
 from fastapi.routing import APIRouter
 from fastapi.templating import Jinja2Templates
@@ -43,7 +43,7 @@ def register_ui(request: Request,
                                     hashed_password = hashed_password)
 
     if not is_correct_pw:
-        raise HTTPException(status_code=401,
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="등록하신 패스워드 정보가 입력 정보와 다릅니다.")
 
     # session에 저장
@@ -52,4 +52,4 @@ def register_ui(request: Request,
         "email": manager_info.email
         }
 
-    return RedirectResponse("/", status_code=302)
+    return RedirectResponse("/", status_code=status.HTTP_302_FOUND)
