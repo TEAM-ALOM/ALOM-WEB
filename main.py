@@ -10,6 +10,7 @@ from starlette.middleware.sessions import SessionMiddleware
 from dotenv import load_dotenv
 import os
 
+# test
 # Secret key
 load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
