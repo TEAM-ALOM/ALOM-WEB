@@ -10,8 +10,8 @@ const GNB_ID = "gnb";
 const NAV_LINKS = [
   { href: "#curriculum", label: "커리큘럼" },
   { href: "#activities", label: "아카이브" },
-  { href: "#", label: "아롬인들" },
-  { href: "#", label: "자주 묻는 질문" },
+  { href: "/member", label: "아롬인들" },
+  { href: "/question", label: "자주 묻는 질문" },
 ];
 
 export default function Header() {
@@ -25,7 +25,12 @@ export default function Header() {
   }, []);
 
   const handleAnchorClick = (event: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
-    if (!hash || hash === "#") {
+    if (!hash.startsWith("#")) {
+      // 페이지 이동 링크(/member, /question 등)는 기본 동작(라우팅)에 맡긴다
+      return;
+    }
+
+    if (hash === "#") {
       event.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
