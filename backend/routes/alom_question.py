@@ -1,15 +1,10 @@
-from fastapi import Request
 from fastapi.routing import APIRouter
-from fastapi.templating import Jinja2Templates
+
+from schemas import QuestionPageData
 
 router = APIRouter(prefix="/question", tags=["Alom Question Page"])
 
-templates = Jinja2Templates(directory="templates")
 
-@router.get("/")
-async def questions_page(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="alom_question.html",
-        context={}
-    )
+@router.get("", response_model=QuestionPageData)
+async def questions_page():
+    return QuestionPageData()
