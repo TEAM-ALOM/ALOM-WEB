@@ -43,7 +43,7 @@ def register_ui(request: Request,
                                     hashed_password = hashed_password)
 
     if not is_correct_pw:
-        raise HTTPException(status_code=401,
+        
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="등록하신 패스워드 정보가 입력 정보와 다릅니다.")
 
