@@ -1,0 +1,94 @@
+.reviews {
+  padding: var(--section-pad) 0;
+  background: var(--bg-soft);
+  overflow: hidden;
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+
+.track {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: max-content;
+  padding: 1.5rem 0 2.5rem;
+  animation: marquee 32s linear infinite;
+}
+
+.track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* 카드 세트가 정확히 두 번 반복되므로 -50% 지점이 첫 세트 끝과 맞물린다 */
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    transform: translateX(0);
+  }
+}
+
+.card {
+  flex: 0 0 clamp(240px, 26vw, 300px);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem 1.75rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  box-shadow: 0 20px 40px -22px rgba(0, 0, 0, 0.65);
+  transform: rotate(var(--tilt, 0deg));
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.04);
+  box-shadow: 0 25px 50px -20px rgba(139, 92, 246, 0.4);
+  z-index: 2;
+}
+
+.quote {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.name {
+  font-weight: 700;
+  color: var(--accent-2);
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: var(--text-faint);
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex-basis: 78vw;
+  }
+}
