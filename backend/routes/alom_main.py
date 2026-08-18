@@ -14,4 +14,5 @@ async def main_page(
     return templates.TemplateResponse(
         request=request,
         name="alom_main.html",
+        context={}
     )

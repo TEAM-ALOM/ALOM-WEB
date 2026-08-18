@@ -1,10 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from routes import (alom_main, 
-                    alom_question, 
-                    alom_archive, 
-                    alom_member, 
-                    alom_login)
+from routes import alom_archive, alom_login, alom_main, alom_member
+from routes import (alom_question)
 
 from starlette.middleware.sessions import SessionMiddleware
 from dotenv import load_dotenv

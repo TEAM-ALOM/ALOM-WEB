@@ -126,14 +126,13 @@ svg {
 }
 
 .gnb__logo {
-  display: flex;
-  align-items: center;
-}
-
-.gnb__logo img {
-  height: 50px;
-  width: auto;
-  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .gnb__nav {
@@ -844,9 +843,12 @@ svg {
 }
 
 .footer__logo {
-  height: 50px;
-  width: auto;
-  display: block;
+  font-size: 1.3rem;
+  font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .footer__brand p {

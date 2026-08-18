@@ -1,0 +1,23 @@
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.up {
+  transform: translateY(90px) scale(0.92);
+}
+
+.left {
+  transform: translateX(-140px) rotate(-6deg) scale(0.92);
+}
+
+.right {
+  transform: translateX(140px) rotate(6deg) scale(0.92);
+}
+
+.visible {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg) scale(1);
+}
